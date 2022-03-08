@@ -1,6 +1,11 @@
 {% extends "journal/base.html" %}
 {% block content %}
-    <h2>All Resources</h2>
+    <div class="d-flex">
+       <h2>All Resources</h2>
+        <a href="{% url 'new-resource' %}">
+            New Resource
+        </a>
+    </div>
     {% for resource in resources %}
         <article class="media content-section">
             <div class="media-body">
