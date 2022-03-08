@@ -4,5 +4,5 @@ from .views import (ResourceView)
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home')
+    path('', ResourceView.as_view(), name='home')
 ]
