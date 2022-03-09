@@ -10,11 +10,11 @@
 
     {% if title %}
         <title>
-            Kieran's Resources - {{ title }}
+            Journal - {{ title }}
         </title>
     {% else %}
         <title>
-            Resources
+            Journal
         </title>
     {% endif %}
 </head>
@@ -22,14 +22,14 @@
     <header>
         <nav class="navbar navbar-expand-md bg-dark">
             <div class="container">
-                <a class="navbar-brand" style="color: white;" href="{% url 'home' %}">Resources</a>
+                <a class="navbar-brand" style="color: white;" href="{% url 'home' %}">Journal</a>
             </div>
         </nav>
     </header>
 
     <main class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 {% block content %}{% endblock %}
             </div>
         </div>
