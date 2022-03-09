@@ -133,3 +133,6 @@ dmypy.json
 
 # Media
 media/
+
+# Secrets
+secret_stuff.py
