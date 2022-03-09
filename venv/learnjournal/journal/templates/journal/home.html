@@ -10,9 +10,14 @@
         <article class="media content-section py-1" style="border-bottom: 0.5px solid grey;">
             <div class="media-body">
                 <div class="article-metadata d-flex">
-                    <p class="mr-auto mb-0">{{ resource.name }}</p>
-                    <a class="btn btn-secondary btn-sm mr-1" href="{% url 'resource-update' resource.id %}">Update</a>
-                    <a class="btn btn-danger btn-sm" href="{% url 'resource-delete' resource.id %}">Delete</a>
+                    <p class="col mb-0 p-0">{{ resource.name }}</p>
+                    <a class="col mb-0 p-0" href="{{resource.link}}">Link</a>
+                    <p class="col mb-0 p-0">{{ resource.language }}</p>
+                    <p class="col mb-0 p-0">{{ resource.framework }}</p>
+                    <p class="col mb-0 p-0">{{ resource.database }}</p>
+                    <p class="col mr-auto mb-0 p-0">{{ resource.technology }}</p>
+                    <a class="col btn btn-secondary btn-sm mr-1 p-0" href="{% url 'resource-update' resource.id %}">Update</a>
+                    <a class="col btn btn-danger btn-sm p-0" href="{% url 'resource-delete' resource.id %}">Delete</a>
                 </div>
             </div>
         </article>
