@@ -11,7 +11,8 @@
             <div class="media-body">
                 <div class="article-metadata d-flex">
                     <p class="col mb-0 p-0">{{ resource.name }}</p>
-                    <a class="col mb-0 p-0" href="{{resource.link}}">Link</a>
+                    <a class="col mb-0 p-0" href="{{ resource.link }}">Link</a>
+                    <a class="col mb-0 p-0" href="{{ resource.attachment.url }}">Attachment</a>
                     <p class="col mb-0 p-0">{{ resource.language }}</p>
                     <p class="col mb-0 p-0">{{ resource.framework }}</p>
                     <p class="col mb-0 p-0">{{ resource.database }}</p>

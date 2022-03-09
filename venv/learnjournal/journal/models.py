@@ -47,6 +47,7 @@ class Technology(models.Model):
 class Resource(models.Model):
     name = models.CharField(max_length=100)
     link = models.URLField(max_length=100, blank=True)
+    attachment = models.FileField(blank=True)
     language = models.ForeignKey(Language, on_delete=models.CASCADE, blank=True, null=True)
     framework = models.ForeignKey(Framework, on_delete=models.CASCADE, blank=True, null=True)
     database = models.ForeignKey(Database, on_delete=models.CASCADE, blank=True, null=True)

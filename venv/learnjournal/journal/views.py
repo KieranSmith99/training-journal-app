@@ -23,7 +23,7 @@ class ResourceView(ListView):
 
 class ResourceCreateView(CreateView):
     model = Resource
-    fields = ['name', 'link', 'language', 'framework', 'database', 'technology']
+    fields = ['name', 'link', 'attachment', 'language', 'framework', 'database', 'technology']
 
     def form_valid(self, form):
         return super().form_valid(form)
@@ -39,7 +39,7 @@ class ResourceDeleteView(DeleteView):
 
 class ResourceUpdateView(UpdateView):
     model = Resource
-    fields = ['name', 'link', 'language', 'framework', 'database', 'technology']
+    fields = ['name', 'link', 'attachment', 'language', 'framework', 'database', 'technology']
 
     def form_valid(self, form):
         return super().form_valid(form)
