@@ -1,21 +1,18 @@
-{% extends "journal/base.html" %}
+{% extends 'journal/base.html' %}
 {% block content %}
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">
-                    Delete Resource
+                    Create Language
                 </legend>
-                <h2>Are you sure you want to delete the resource "{{ object.name }}"?</h2>
+                {{ form.as_p }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">
-                    Delete
+                <button class="btn btn-outline-info" type="submit">
+                    Submit
                 </button>
-                <a class="btn btn-outline-secondary" href="{% url 'home' %}">
-                    Cancel
-                </a>
             </div>
         </form>
     </div>

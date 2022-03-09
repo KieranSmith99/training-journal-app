@@ -3,47 +3,57 @@ from django.urls import reverse
 
 # Create your models here.
 
-language_choices = (
-    ('Java', 'Java'),
-    ('Python', 'Python'),
-    ('Typescript', 'Typescript'),
-    ('Javascript', 'Javascript'),
-    ('Go', 'Go')
-)
 
-framework_choices = (
-    ('Flask', 'Flask'),
-    ('Django', 'Django'),
-    ('Angular', 'Angular'),
-    ('React', 'React'),
-    ('Vue', 'Vue'),
-    ('Spring Boot', 'Spring Boot')
-)
+class Language(models.Model):
+    name = models.CharField(max_length=100)
 
-database_choices = (
-    ('MySQL', 'MySQL'),
-    ('PostgreSQL', 'PostgreSQL'),
-    ('MongoDB', 'MongoDB'),
-    ('SQLite', 'SQLite')
-)
+    def __str__(self):
+        return self.name
 
-technology_choices = (
-    ('AWS', 'AWS'),
-    ('Git', 'Git'),
-    ('Azure', 'Azure')
-)
+    def get_absolute_url(self):
+        return reverse('languages')
+
+
+class Framework(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('frameworks')
+
+
+class Database(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('databases')
+
+
+class Technology(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('technologies')
 
 
 class Resource(models.Model):
     name = models.CharField(max_length=100)
     link = models.URLField(max_length=100, blank=True)
-    language = models.CharField(max_length=20, choices=language_choices)
-    framework = models.CharField(max_length=20, choices=framework_choices)
-    database = models.CharField(max_length=20, choices=database_choices)
-    technology = models.CharField(max_length=20, choices=technology_choices)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    framework = models.ForeignKey(Framework, on_delete=models.CASCADE)
+    database = models.ForeignKey(Database, on_delete=models.CASCADE)
+    technology = models.ForeignKey(Technology, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def get_absolute_url(self):
         return reverse('home')
