@@ -10,7 +10,9 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="{% url 'resource-detail' resource.id %}">{{ resource.name }}</a>
+                    <p class="mr-2">{{ resource.name }}</p>
+                    <a class ="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'resource-update' resource.id %}">Update</a>
+                    <a class ="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'resource-delete' resource.id %}">Delete</a>
                 </div>
             </div>
         </article>

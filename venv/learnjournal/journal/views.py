@@ -33,9 +33,8 @@ class ResourceDeleteView(DeleteView):
     model = Resource
     success_url = '/'
 
-
-class ResourceDetailView(DetailView):
-    model = Resource
+    def test_func(self):
+        resource = self.get_object()
 
 
 class ResourceUpdateView(UpdateView):
