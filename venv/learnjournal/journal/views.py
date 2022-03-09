@@ -103,3 +103,63 @@ class FrameworkUpdateView(UpdateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+class DatabaseView(ListView):
+    model = Database
+    template_name = 'journal/database_list.html'
+    context_object_name = 'databases'
+
+
+class DatabaseCreateView(CreateView):
+    model = Database
+    fields = ['name']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class DatabaseDeleteView(DeleteView):
+    model = Database
+    success_url = '/databases'
+
+    def test_func(self):
+        database = self.get_object()
+
+
+class DatabaseUpdateView(UpdateView):
+    model = Database
+    fields = ['name']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class TechnologyView(ListView):
+    model = Technology
+    template_name = 'journal/technology_list.html'
+    context_object_name = 'technologies'
+
+
+class TechnologyCreateView(CreateView):
+    model = Technology
+    fields = ['name']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class TechnologyDeleteView(DeleteView):
+    model = Technology
+    success_url = '/technologies'
+
+    def test_func(self):
+        technology = self.get_object()
+
+
+class TechnologyUpdateView(UpdateView):
+    model = Technology
+    fields = ['name']
+
+    def form_valid(self, form):
+        return super().form_valid(form)
