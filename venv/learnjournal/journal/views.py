@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
-from django.views.generic import (ListView, CreateView)
+from django.views.generic import (ListView, CreateView, DeleteView, DetailView)
 from .models import Resource
 
 # Create your views here.
@@ -27,3 +27,12 @@ class ResourceCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+class ResourceDeleteView(DeleteView):
+    model = Resource
+    success_url = '/'
+
+
+class ResourceDetailView(DetailView):
+    model = Resource
