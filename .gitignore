@@ -135,4 +135,4 @@ dmypy.json
 media/
 
 # Secrets
-secret_stuff.py
+secret_things.py
