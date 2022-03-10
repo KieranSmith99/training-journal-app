@@ -1,24 +1,28 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import View
-from django.views.generic import (ListView, CreateView, DeleteView, DetailView, UpdateView)
+from django.views.generic import (ListView, CreateView, DeleteView, UpdateView, TemplateView)
 from .models import Resource, Language, Framework, Database, Technology
 
 # Create your views here.
-
-
-def home(request):
-    context = {
-        'resources': Resource.objects.all()
-    }
-
-    return render(request, 'journal/home.html', context)
 
 
 class ResourceView(ListView):
     model = Resource
     template_name = 'journal/home.html'
     context_object_name = 'resources'
+
+
+class SearchView(TemplateView):
+    model = Resource
+    template_name = 'journal/home.html'
+    context_object_name = 'resources'
+
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('searchInput')
+        self.resources = Resource.objects.filter(name__icontains=query)
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(resources=self.resources, **kwargs)
 
 
 class ResourceCreateView(CreateView):

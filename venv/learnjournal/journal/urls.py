@@ -4,8 +4,8 @@ from .views import (ResourceView, ResourceCreateView, ResourceDeleteView, Resour
                     LanguageView, LanguageCreateView, LanguageDeleteView, LanguageUpdateView,
                     FrameworkCreateView, FrameworkView, FrameworkDeleteView, FrameworkUpdateView,
                     DatabaseView, DatabaseCreateView, DatabaseUpdateView, DatabaseDeleteView,
-                    TechnologyView, TechnologyCreateView, TechnologyDeleteView, TechnologyUpdateView)
-from . import views
+                    TechnologyView, TechnologyCreateView, TechnologyDeleteView, TechnologyUpdateView,
+                    SearchView)
 
 urlpatterns = [
     path('', ResourceView.as_view(), name='home'),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('technology/new/', TechnologyCreateView.as_view(), name="new-technology"),
     path('technology/<int:pk>/delete', TechnologyDeleteView.as_view(), name="technology-delete"),
     path('technology/<int:pk>/update', TechnologyUpdateView.as_view(), name="technology-update"),
+    path('search', SearchView.as_view(), name="search")
 ]

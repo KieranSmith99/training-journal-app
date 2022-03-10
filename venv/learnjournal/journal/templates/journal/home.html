@@ -1,8 +1,14 @@
 {% extends "journal/base.html" %}
 {% block content %}
-    <div class="d-flex">
-       <h2 class="mr-auto my-1">All Resources</h2>
-        <a class="btn btn-primary btn-sm mt-2 mb-2 col-2" href="{% url 'new-resource' %}">
+    <div class="d-flex mb-3">
+        <h2 class="my-1">All Resources</h2>
+        <form class="d-flex mr-auto ml-auto mt-1" method="GET" action="{% url 'search' %}">
+            <input type="text" name="searchInput">
+            <button class="btn btn-outline-info btn-sm ml-2" type="submit">
+                Search
+            </button>
+        </form>
+        <a class="btn btn-primary btn-sm col-2 my-2" href="{% url 'new-resource' %}">
             New Resource
         </a>
     </div>
@@ -10,7 +16,7 @@
         <article class="media content-section py-1" style="border-bottom: 0.5px solid grey;">
             <div class="media-body">
                 <div class="article-metadata d-flex">
-                    <p class="col mb-0 p-0">{{ resource.name }}</p>
+                    <p class="col-2 mb-0 p-0">{{ resource.name }}</p>
                     <a class="col mb-0 p-0" href="{{ resource.link }}">Link</a>
                     <a class="col mb-0 p-0" href="{{ resource.attachment.url }}">Attachment</a>
                     <p class="col mb-0 p-0">{{ resource.language }}</p>
