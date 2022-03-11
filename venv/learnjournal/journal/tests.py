@@ -1,4 +1,4 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from .models import Resource, Language, Framework, Database, Technology
 
 # Create your tests here.
