@@ -22,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-md bg-dark">
             <div class="container">
-                <a class="navbar-brand mr-auto" style="color: white;" href="{% url 'home' %}">Home</a>
+            <a class="navbar-brand mr-auto" style="color: white;" href="{% url 'home' %}">Home</a>
                 <div class="navbar-nav">
                     <a class="navbar-item" style="color: white;" href="{% url 'languages' %}">Languages</a>
                     <a class="navbar-item ml-3" style="color: white;" href="{% url 'frameworks' %}">Frameworks</a>
@@ -31,8 +31,16 @@
                 </div>
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="navbar-item ml-3" style="color: white;" href="{% url 'profile' %}">Profile</a>
-                        <a class="navbar-item ml-3" style="color: white;" href="{% url 'logout' %}">Logout</a>
+                    <li class="nav-item dropdown ml-2">
+                          <a class="nav-link" id="navbarDropdown" style="color: white;"
+                             role="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                            <img class="rounded-circle account-img" height="40px;" width="40px;" src="{{ user.profile.image.url }}">
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                          </ul>
+                    </li>
                     {% else %}
                         <a class="navbar-item ml-3" style="color: white;" href="{% url 'login' %}">Login</a>
                         <a class="navbar-item ml-3" style="color: white;" href="{% url 'register' %}">Register</a>
