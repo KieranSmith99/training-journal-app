@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import (ListView, CreateView, DeleteView, UpdateView, TemplateView)
 from .models import Resource, Language, Framework, Database, Technology
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 
@@ -25,28 +26,39 @@ class SearchView(TemplateView):
         return super().get_context_data(resources=self.resources, **kwargs)
 
 
-class ResourceCreateView(CreateView):
+class ResourceCreateView(LoginRequiredMixin, CreateView):
     model = Resource
     fields = ['name', 'link', 'attachment', 'language', 'framework', 'database', 'technology']
 
     def form_valid(self, form):
+        form.instance.created_by = self.request.user
         return super().form_valid(form)
 
 
-class ResourceDeleteView(DeleteView):
+class ResourceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Resource
     success_url = '/'
 
     def test_func(self):
         resource = self.get_object()
+        if self.request.user == resource.created_by:
+            return True
+        return False
 
 
-class ResourceUpdateView(UpdateView):
+class ResourceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Resource
     fields = ['name', 'link', 'attachment', 'language', 'framework', 'database', 'technology']
 
     def form_valid(self, form):
+        form.instance.created_by = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        resource = self.get_object()
+        if self.request.user == resource.created_by:
+            return True
+        return False
 
 
 class LanguageView(ListView):

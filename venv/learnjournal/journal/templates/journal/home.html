@@ -13,9 +13,11 @@
                 Search
             </button>
         </form>
+        {% if user.is_authenticated %}
         <a class="btn btn-primary btn-sm col-2 my-2" href="{% url 'new-resource' %}">
             New Resource
         </a>
+        {% endif %}
     </div>
     <article class="media content-section pt-1 mb-3">
         <div class="media-body">
@@ -26,7 +28,8 @@
                 <p class="col mb-0 p-0">Language</p>
                 <p class="col mb-0 p-0">Framework</p>
                 <p class="col mb-0 p-0">Database</p>
-                <p class="col mr-auto mb-0 p-0">Technology</p>
+                <p class="col mb-0 p-0">Technology</p>
+                <p class="col mb-0 p-0">User</p>
                 <a class="col-1 mr-1 p-0"></a>
                 <a class="col-1 p-0"></a>
             </div>
@@ -42,9 +45,15 @@
                     <p class="col mb-0 p-0">{{ resource.language }}</p>
                     <p class="col mb-0 p-0">{{ resource.framework }}</p>
                     <p class="col mb-0 p-0">{{ resource.database }}</p>
-                    <p class="col mr-auto mb-0 p-0">{{ resource.technology }}</p>
-                    <a class="col-1 btn btn-secondary btn-sm mr-1 p-0" href="{% url 'resource-update' resource.id %}">Update</a>
-                    <a class="col-1 btn btn-danger btn-sm p-0" href="{% url 'resource-delete' resource.id %}">Delete</a>
+                    <p class="col mb-0 p-0">{{ resource.technology }}</p>
+                    <p class="col mb-0 p-0">{{ resource.created_by }}</p>
+                    {% if resource.created_by == user %}
+                        <a class="col-1 btn btn-secondary btn-sm mr-1 p-0" href="{% url 'resource-update' resource.id %}">Update</a>
+                        <a class="col-1 btn btn-danger btn-sm p-0" href="{% url 'resource-delete' resource.id %}">Delete</a>
+                    {% else %}
+                        <a class="col-1 mr-1 p-0"></a>
+                        <a class="col-1 p-0"></a>
+                    {% endif %}
                 </div>
             </div>
         </article>
