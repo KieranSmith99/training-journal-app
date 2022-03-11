@@ -67,7 +67,7 @@ class LanguageView(ListView):
     context_object_name = 'languages'
 
 
-class LanguageCreateView(CreateView):
+class LanguageCreateView(LoginRequiredMixin, CreateView):
     model = Language
     fields = ['name']
 
@@ -75,20 +75,27 @@ class LanguageCreateView(CreateView):
         return super().form_valid(form)
 
 
-class LanguageDeleteView(DeleteView):
+class LanguageDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Language
     success_url = '/languages'
 
     def test_func(self):
-        language = self.get_object()
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
-class LanguageUpdateView(UpdateView):
+class LanguageUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Language
     fields = ['name']
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
 class FrameworkView(ListView):
@@ -97,7 +104,7 @@ class FrameworkView(ListView):
     context_object_name = 'frameworks'
 
 
-class FrameworkCreateView(CreateView):
+class FrameworkCreateView(LoginRequiredMixin, CreateView):
     model = Framework
     fields = ['name']
 
@@ -105,20 +112,27 @@ class FrameworkCreateView(CreateView):
         return super().form_valid(form)
 
 
-class FrameworkDeleteView(DeleteView):
+class FrameworkDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Framework
     success_url = '/frameworks'
 
     def test_func(self):
-        framework = self.get_object()
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
-class FrameworkUpdateView(UpdateView):
+class FrameworkUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Framework
     fields = ['name']
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
 class DatabaseView(ListView):
@@ -127,7 +141,7 @@ class DatabaseView(ListView):
     context_object_name = 'databases'
 
 
-class DatabaseCreateView(CreateView):
+class DatabaseCreateView(LoginRequiredMixin, CreateView):
     model = Database
     fields = ['name']
 
@@ -135,20 +149,27 @@ class DatabaseCreateView(CreateView):
         return super().form_valid(form)
 
 
-class DatabaseDeleteView(DeleteView):
+class DatabaseDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Database
     success_url = '/databases'
 
     def test_func(self):
-        database = self.get_object()
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
-class DatabaseUpdateView(UpdateView):
+class DatabaseUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Database
     fields = ['name']
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
 class TechnologyView(ListView):
@@ -157,7 +178,7 @@ class TechnologyView(ListView):
     context_object_name = 'technologies'
 
 
-class TechnologyCreateView(CreateView):
+class TechnologyCreateView(LoginRequiredMixin, CreateView):
     model = Technology
     fields = ['name']
 
@@ -165,17 +186,24 @@ class TechnologyCreateView(CreateView):
         return super().form_valid(form)
 
 
-class TechnologyDeleteView(DeleteView):
+class TechnologyDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Technology
     success_url = '/technologies'
 
     def test_func(self):
-        technology = self.get_object()
+        if self.request.user.is_superuser:
+            return True
+        return False
 
 
-class TechnologyUpdateView(UpdateView):
+class TechnologyUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Technology
     fields = ['name']
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False

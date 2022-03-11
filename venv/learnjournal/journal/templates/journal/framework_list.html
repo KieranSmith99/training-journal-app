@@ -2,17 +2,21 @@
 {% block content %}
     <div class="d-flex">
        <h2 class="mr-auto my-1">Frameworks</h2>
-        <a class="btn btn-primary btn-sm mt-2 mb-2 col-2" href="{% url 'new-framework' %}">
-            New Framework
-        </a>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary btn-sm mt-2 mb-2 col-2" href="{% url 'new-framework' %}">
+                New Framework
+            </a>
+        {% endif %}
     </div>
     {% for framework in frameworks %}
         <article class="media content-section py-1" style="border-bottom: 0.5px solid grey;">
             <div class="media-body">
                 <div class="article-metadata d-flex">
                     <p class="col mb-0 p-0">{{ framework.name }}</p>
-                    <a class="col-1 btn btn-secondary btn-sm mr-1 p-0" href="{% url 'framework-update' framework.id %}">Update</a>
-                    <a class="col-1 btn btn-danger btn-sm p-0" href="{% url 'framework-delete' framework.id %}">Delete</a>
+                    {% if user.is_authenticated and user.is_superuser %}
+                        <a class="col-1 btn btn-secondary btn-sm mr-1 p-0" href="{% url 'framework-update' framework.id %}">Update</a>
+                        <a class="col-1 btn btn-danger btn-sm p-0" href="{% url 'framework-delete' framework.id %}">Delete</a>
+                    {% endif %}
                 </div>
             </div>
         </article>
