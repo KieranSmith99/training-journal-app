@@ -5,7 +5,7 @@ from .views import (ResourceView, ResourceCreateView, ResourceDeleteView, Resour
                     FrameworkCreateView, FrameworkView, FrameworkDeleteView, FrameworkUpdateView,
                     DatabaseView, DatabaseCreateView, DatabaseUpdateView, DatabaseDeleteView,
                     TechnologyView, TechnologyCreateView, TechnologyDeleteView, TechnologyUpdateView,
-                    SearchView)
+                    SearchView, UserResourceView)
 
 urlpatterns = [
     path('', ResourceView.as_view(), name='home'),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('technology/new/', TechnologyCreateView.as_view(), name="new-technology"),
     path('technology/<int:pk>/delete', TechnologyDeleteView.as_view(), name="technology-delete"),
     path('technology/<int:pk>/update', TechnologyUpdateView.as_view(), name="technology-update"),
-    path('search', SearchView.as_view(), name="search")
+    path('search', SearchView.as_view(), name="search"),
+    path('user/<str:username>', UserResourceView.as_view(), name="user-resources")
 ]

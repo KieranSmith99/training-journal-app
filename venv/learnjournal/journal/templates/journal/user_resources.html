@@ -1,24 +1,6 @@
 {% extends "journal/base.html" %}
 {% block content %}
-    <div class="jumbotron">
-      <h1 class="display-4">Journal</h1>
-      <p class="lead">View all resources here. Click on your profile to see your resources.</p>
-      <hr>
-    </div>
-    <div class="d-flex mb-3">
-        <h2 class="my-1">All Resources</h2>
-        <form class="d-flex mr-auto ml-auto" method="GET" action="{% url 'search' %}">
-            <input type="text" name="searchInput">
-            <button class="btn btn-outline-info btn-sm ml-2" type="submit">
-                Search
-            </button>
-        </form>
-        {% if user.is_authenticated %}
-        <a class="btn btn-primary btn-sm col-2 my-2" href="{% url 'new-resource' %}">
-            New Resource
-        </a>
-        {% endif %}
-    </div>
+    <h1 class="mb-3">Resources by {{ view.kwargs.username }}</h1>
     <article class="media content-section pt-1 mb-3">
         <div class="media-body">
             <div class="article-metadata d-flex">
@@ -46,7 +28,7 @@
                     <p class="col mb-0 p-0">{{ resource.framework }}</p>
                     <p class="col mb-0 p-0">{{ resource.database }}</p>
                     <p class="col mb-0 p-0">{{ resource.technology }}</p>
-                    <a class="col mb-0 p-0" href="{% url 'user-resources' resource.created_by.username %}">{{ resource.created_by }}</a>
+                    <p class="col mb-0 p-0">{{ resource.created_by }}</p>
                     {% if resource.created_by == user %}
                         <a class="col-1 btn btn-secondary btn-sm mr-1 p-0" href="{% url 'resource-update' resource.id %}">Update</a>
                         <a class="col-1 btn btn-danger btn-sm p-0" href="{% url 'resource-delete' resource.id %}">Delete</a>
@@ -58,4 +40,4 @@
             </div>
         </article>
     {% endfor %}
-{% endblock content %}
+{% endblock %}

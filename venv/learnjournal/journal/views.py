@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import (ListView, CreateView, DeleteView, UpdateView, TemplateView)
 from .models import Resource, Language, Framework, Database, Technology
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -10,6 +11,16 @@ class ResourceView(ListView):
     model = Resource
     template_name = 'journal/home.html'
     context_object_name = 'resources'
+
+
+class UserResourceView(ListView):
+    model = Resource
+    template_name = 'journal/user_resources.html'
+    context_object_name = 'resources'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Resource.objects.filter(created_by=user)
 
 
 class SearchView(TemplateView):
