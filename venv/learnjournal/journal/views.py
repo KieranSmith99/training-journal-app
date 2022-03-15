@@ -3,6 +3,7 @@ from django.views.generic import (ListView, CreateView, DeleteView, UpdateView, 
 from .models import Resource, Language, Framework, Database, Technology
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 # Create your views here.
 
@@ -30,7 +31,14 @@ class SearchView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         query = request.GET.get('searchInput')
-        self.resources = Resource.objects.filter(name__icontains=query)
+        self.resources = Resource.objects.filter(
+            Q(name__icontains=query) |
+            Q(language__name__icontains=query) |
+            Q(framework__name__icontains=query) |
+            Q(database__name__icontains=query) |
+            Q(technology__name__icontains=query) |
+            Q(created_by__username__icontains=query)
+        )
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
