@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Resource, Language, Framework, Database, Technology
+from django.contrib.auth.models import User
 
 # Create your tests here.
 
@@ -7,7 +8,8 @@ from .models import Resource, Language, Framework, Database, Technology
 class ResourceTest(TestCase):
 
     def setUp(self):
-        Resource.objects.create(name="Google", link="https://google.com")
+        user = User.objects.create(username="Test User")
+        Resource.objects.create(name="Google", link="https://google.com", created_by=user)
 
     def testCreate(self):
         resource = Resource.objects.get(name="Google")

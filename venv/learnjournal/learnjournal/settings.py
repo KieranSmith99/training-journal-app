@@ -90,6 +90,9 @@ DATABASES = {
         'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '3306',
+        'TEST': {
+            'NAME': 'test_django_database',
+        },
     }
 }
 
