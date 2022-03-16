@@ -43,9 +43,9 @@
                           </ul>
                     </li>
                     {% else %}
-                        <a class="navbar-item ml-3" style="color: white;" href="{% url 'login' %}">Login</a>
-                        <a class="navbar-item ml-3" style="color: white;" href="{% url 'register' %}">Register</a>
-                        <a class="navbar-item ml-3" style="color: white;" href="{% provider_login_url 'google' %}">Login with Google</a>
+                        <a class="navbar-item btn btn-primary ml-3" style="color: white;" href="{% url 'login' %}">Login</a>
+                        <a class="navbar-item btn btn-success ml-2" style="color: white;" href="{% url 'register' %}">Register</a>
+                        <a class="navbar-item btn btn-danger ml-2" href="{% provider_login_url 'google' %}">Login with Google</a>
                     {% endif %}
                 </div>
             </div>
