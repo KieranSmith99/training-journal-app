@@ -87,19 +87,19 @@ WSGI_APPLICATION = 'learnjournal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'TEST': {
-            'NAME': 'test_django_database',
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': env('DATABASE_NAME'),
+#         'USER': env('DATABASE_USER'),
+#         'PASSWORD': env('DATABASE_PASSWORD'),
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'TEST': {
+#             'NAME': 'test_django_database',
+#         },
+#     }
+# }
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
