@@ -29,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY_SAFE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [journaltrainingapp.herokuapp.com]
+ALLOWED_HOSTS = ['journaltrainingapp.herokuapp.com']
 
 
 # Application definition
