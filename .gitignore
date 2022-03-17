@@ -136,5 +136,7 @@ media/
 
 # Secrets
 secret_things.py
+requirements.txt
+journal-training-app-344115-40363be97a92.json
 
 src/
