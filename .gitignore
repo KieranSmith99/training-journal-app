@@ -112,6 +112,7 @@ celerybeat.pid
 #env.bak/
 #venv.bak/
 pyvenv.cfg
+venv/__init__.py
 
 # Spyder project settings
 .spyderproject
@@ -137,5 +138,6 @@ media/
 # Secrets
 secret_things.py
 journal-training-app-344115-40363be97a92.json
+.env
 
 src/
