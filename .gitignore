@@ -137,7 +137,5 @@ media/
 
 # Secrets
 secret_things.py
-journal-training-app-344115-40363be97a92.json
-.env
 
 src/
