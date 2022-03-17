@@ -1,1 +1,1 @@
-web: gunicorn venv/learnjournal/learnjournal.wsgi
+web: gunicorn venv/learnjournal.wsgi
