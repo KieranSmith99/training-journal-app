@@ -136,3 +136,5 @@ media/
 
 # Secrets
 secret_things.py
+
+src/
