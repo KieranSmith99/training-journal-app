@@ -112,10 +112,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'journal-training-app-344115-40363be97a92.json')
-)
-
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'journal-bucket'
 
