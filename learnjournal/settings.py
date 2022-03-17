@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import environ
+import django_heroku
 from google.oauth2 import service_account
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -169,6 +170,8 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 SITE_ID = 3
+
+django_heroku.settings(local())
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
