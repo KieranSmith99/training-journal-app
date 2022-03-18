@@ -34,8 +34,8 @@ def profile(request):
             u_form.save()
             p_form.save()
 
-            image = request.FILES['image']
-            public_uri = Profile.upload_image(image, image.name)
+            # image = request.FILES['image']
+            # public_uri = Profile.upload_image(image, image.name)
 
             messages.success(request, f'Your account has been updated.')
 
