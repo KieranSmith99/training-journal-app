@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import environ
-import django_heroku
 from google.oauth2 import service_account
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY_SAFE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['journaltrainingapp.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -87,19 +86,19 @@ WSGI_APPLICATION = 'learnjournal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': env('DATABASE_NAME'),
-#         'USER': env('DATABASE_USER'),
-#         'PASSWORD': env('DATABASE_PASSWORD'),
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'TEST': {
-#             'NAME': 'test_django_database',
-#         },
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'TEST': {
+            'NAME': 'test_django_database',
+        },
+    }
+}
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -113,9 +112,9 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-#     os.path.join(BASE_DIR, 'journal-training-app-344115-40363be97a92.json')
-# )
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'journal-training-app-344115-40363be97a92.json')
+)
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'journal-bucket'
@@ -170,8 +169,6 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 SITE_ID = 3
-
-django_heroku.settings(local())
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
