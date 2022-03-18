@@ -136,6 +136,7 @@ dmypy.json
 media/
 
 # Secrets
-secret_things.py
+.env
+journal-training-app-344115-40363be97a92.json
 
 src/
