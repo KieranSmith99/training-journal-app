@@ -15,6 +15,9 @@ class ResourceTest(TestCase):
         resource = Resource.objects.get(name="Google")
         self.assertEqual(resource.name, "Google")
 
+    def testNotExist(self):
+        resource = Resource.objects.filter(name="Incorrect")
+        self.assertEqual(len(resource), 0)
 
 class LanguageTest(TestCase):
 

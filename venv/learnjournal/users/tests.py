@@ -11,3 +11,7 @@ class UserTest(TestCase):
     def testCreate(self):
         user = User.objects.get(username="TestUser")
         self.assertEqual(user.username, "TestUser")
+
+    def testNotExist(self):
+        user = User.objects.filter(username="Incorrect")
+        self.assertEqual(0, len(user))
